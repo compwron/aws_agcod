@@ -18,6 +18,38 @@ describe AGCOD::Request do
       allow(AGCOD::Signature).to receive(:new).with(config) { signature }
     end
 
+    context "with creationRequestId as special testing value" do
+      let(:params) { { creationRequestId: creationRequestId } }
+
+      subject { AGCOD::Request.new(httpable, action, params) }
+
+      before do
+        allow(signature).to receive(:sign).and_return(signed_headers)
+      end
+
+      context "with special creationRequestId F0000" do
+        let(:creationRequestId) { "F0000" }
+
+        it "does not add partnerId to creationRequestId" do
+          expect(HTTP).to receive(:post) do |_, options|
+            expect(JSON.parse(options[:body])["creationRequestId"]).to eq("F0000")
+          end.and_return(double(body: params.to_json))
+          subject
+        end
+      end
+
+      context "with special creationRequestId F2005" do
+        let(:creationRequestId) { "F2005" }
+
+        it "does not add partnerId to creationRequestId" do
+          expect(HTTP).to receive(:post) do |_, options|
+            expect(JSON.parse(options[:body])["creationRequestId"]).to eq("F2005")
+          end.and_return(double(body: params.to_json))
+          subject
+        end
+      end
+    end
+
     it "sends post request to endpoint uri" do
       expect(signature).to receive(:sign) do |uri, headers, body|
         expect(uri).to eq(URI("#{base_uri}/#{action}"))
