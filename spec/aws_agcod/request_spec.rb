@@ -8,8 +8,7 @@ describe AGCOD::Request do
   let(:signed_headers) { double("signed_headers") }
   let(:base_uri) { "https://example.com" }
   let(:partner_id) { "BAR" }
-  let(:timeout) { 10 }
-  let(:config) { double(uri: base_uri, partner_id: partner_id, timeout: timeout) }
+  let(:config) { double(uri: base_uri, partner_id: partner_id) }
   let(:httpable) { HTTP }
 
   context "#new" do
@@ -63,7 +62,6 @@ describe AGCOD::Request do
         expect(uri).to eq(URI("#{base_uri}/#{action}"))
         expect(JSON.parse(options[:body])["partnerId"]).to eq(partner_id)
         expect(options[:headers]).to eq(signed_headers)
-        expect(options[:timeout]).to eq(timeout)
       end.and_return(double(body: params.to_json))
 
       AGCOD::Request.new(httpable, action, params)

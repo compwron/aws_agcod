@@ -14,7 +14,7 @@ module AGCOD
       @action = action
       @params = sanitized_params(params)
 
-      @response = Response.new(httpable.post(uri, body: body, headers: signed_headers, timeout: AGCOD.config.timeout).body)
+      @response = Response.new(httpable.post(uri, body: body, headers: signed_headers).body)
     end
 
     private

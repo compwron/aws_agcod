@@ -41,7 +41,6 @@ AGCOD.configure do |config|
   config.uri = "https://my-custom-agcod-endpoint.com"
 
   config.region  = "us-east-1" # default
-  config.timeout = 30          # default
 end
 ```
 

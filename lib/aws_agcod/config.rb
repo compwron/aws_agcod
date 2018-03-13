@@ -5,7 +5,6 @@ module AGCOD
                   :secret_key,
                   :partner_id,
                   :region,
-                  :timeout,
                   :production
 
     URI = {
@@ -17,7 +16,6 @@ module AGCOD
       # API defaults
       @production = false
       @region = "us-east-1"
-      @timeout = 30
     end
 
     def uri

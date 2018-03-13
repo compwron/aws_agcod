@@ -8,7 +8,6 @@ describe AGCOD::Config do
     it "sets default uri and region" do
       expect(config.uri).not_to be_nil
       expect(config.region).not_to be_nil
-      expect(config.timeout).not_to be_nil
       expect(config.production).to eq(false)
     end
   end
