@@ -1,5 +1,3 @@
-upgrade gemspec dependencies / remove httpparty
-use http proxy (pass it in?)
-test in staging
-fill out changelog
+make spec_helper import automatically
+fill out changelog better
 re-release gem
