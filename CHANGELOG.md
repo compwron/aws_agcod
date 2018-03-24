@@ -1,6 +1,9 @@
 CHANGELOG
 ---------
 
+1.1.0
+- new endpoint GetAvailableFunds
+
 1.0.0
 - ruby 2.3.6
 - use gem http instead of gem httpparty and allow passing in a httpable object to all requests (so that a proxy can be used)
