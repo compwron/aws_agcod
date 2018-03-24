@@ -1,7 +1,7 @@
 # AGCOD
 
 [![Build Status](https://travis-ci.org/compwron/aws_agcod.svg?branch=master)](https://travis-ci.org/compwron/aws_agcod)
-[![Gem Version](https://badge.fury.io/rb/aws_agcod.svg)](http://badge.fury.io/rb/aws_agcod)
+[![Gem Version](https://badge.fury.io/rb/aws_agcod_2.svg)](http://badge.fury.io/rb/aws_agcod_2)
 
 Amazon Gift Code On Demand (AGCOD) API v2 implementation for distributing Amazon gift cards (gift codes) instantly in any denomination.
 
@@ -10,7 +10,7 @@ Amazon Gift Code On Demand (AGCOD) API v2 implementation for distributing Amazon
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'aws_agcod'
+gem 'aws_agcod_2' # https://rubygems.org/gems/aws_agcod_2
 ```
 
 And then execute:
