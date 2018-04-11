@@ -1,8 +1,8 @@
-require "spec_helper"
-require "aws_agcod/cancel_gift_card"
+require 'spec_helper'
+require 'aws_agcod/cancel_gift_card'
 
 describe AGCOD::CancelGiftCard do
-  let(:partner_id) { "Testa" }
+  let(:partner_id) { 'Testa' }
   let(:response) { spy }
   let(:httpable) { HTTP }
 
@@ -12,25 +12,25 @@ describe AGCOD::CancelGiftCard do
     end
   end
 
-  context ".new" do
-    let(:request_id) { "test1" }
-    let(:gc_id) { "FOO" }
+  context '.new' do
+    let(:request_id) { 'test1' }
+    let(:gc_id) { 'FOO' }
 
-    it "makes cancel request" do
+    it 'makes cancel request' do
       expect(AGCOD::Request).to receive(:new) do |_, action, params|
-        expect(action).to eq("CancelGiftCard")
-        expect(params["creationRequestId"]).to eq(request_id)
-        expect(params["gcId"]).to eq(gc_id)
+        expect(action).to eq('CancelGiftCard')
+        expect(params['creationRequestId']).to eq(request_id)
+        expect(params['gcId']).to eq(gc_id)
       end.and_return(response)
 
       AGCOD::CancelGiftCard.new(httpable, request_id, gc_id)
     end
   end
 
-  shared_context "request with response" do
-    let(:gc_id) { "BAR" }
-    let(:creation_request_id) { "BAZ" }
-    let(:status) { "SUCCESS" }
+  shared_context 'request with response' do
+    let(:gc_id) { 'BAR' }
+    let(:creation_request_id) { 'BAZ' }
+    let(:status) { 'SUCCESS' }
     let(:request) { AGCOD::CancelGiftCard.new(httpable, creation_request_id, gc_id) }
 
     before do
@@ -39,10 +39,10 @@ describe AGCOD::CancelGiftCard do
     end
   end
 
-  context "#status" do
-    include_context "request with response"
+  context '#status' do
+    include_context 'request with response'
 
-    it "returns the response status" do
+    it 'returns the response status' do
       expect(request.status).to eq(status)
     end
   end

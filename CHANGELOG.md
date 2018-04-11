@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+1.1.1
+- minor test changes
+- default ruby version from 2.3.6 to 2.5.1
+
 1.1.0
 - new endpoint GetAvailableFunds, first release as aws_agcod_2
 

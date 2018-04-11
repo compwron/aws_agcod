@@ -1,11 +1,11 @@
-require "aws_agcod/signature"
-require "aws_agcod/response"
-require "http"
-require "yaml"
+require 'aws_agcod/signature'
+require 'aws_agcod/response'
+require 'http'
+require 'yaml'
 
 module AGCOD
   class Request
-    TIME_FORMAT = "%Y%m%dT%H%M%SZ"
+    TIME_FORMAT = '%Y%m%dT%H%M%SZ'
     MOCK_REQUEST_IDS = %w(F0000 F2005)
 
     attr_reader :response
@@ -23,12 +23,12 @@ module AGCOD
       time = Time.now.utc
 
       headers = {
-        "content-type" => "application/json",
-        "x-amz-date" => time.strftime(TIME_FORMAT),
-        "accept" => "application/json",
-        "host" => uri.host,
+        'content-type' => 'application/json',
+        'x-amz-date' => time.strftime(TIME_FORMAT),
+        'accept' => 'application/json',
+        'host' => uri.host,
         "x-amz-target" => "com.amazonaws.agcod.AGCODService.#{@action}",
-        "date" => time.to_s
+        'date' => time.to_s
       }
 
       Signature.new(AGCOD.config).sign(uri, headers, body)
@@ -40,19 +40,19 @@ module AGCOD
 
     def body
       @body ||= @params.merge(
-        "partnerId" => AGCOD.config.partner_id
+        'partnerId' => AGCOD.config.partner_id
       ).to_json
     end
 
     def sanitized_params(params)
       # Prefix partner_id when it's not given as part of request_id for creationRequestId and it's not a mock request_id
-      if params["creationRequestId"] && !(params["creationRequestId"] =~ /#{AGCOD.config.partner_id}/) && !(MOCK_REQUEST_IDS.member?(params["creationRequestId"]))
-        params["creationRequestId"] = "#{AGCOD.config.partner_id}#{params["creationRequestId"]}"
+      if params['creationRequestId'] && !(params['creationRequestId'] =~ /#{AGCOD.config.partner_id}/) && !(MOCK_REQUEST_IDS.member?(params["creationRequestId"]))
+        params['creationRequestId'] = "#{AGCOD.config.partner_id}#{params['creationRequestId']}"
       end
 
       # Remove partner_id when it's prefixed in requestId
-      if params["requestId"] && !!(params["requestId"] =~ /^#{AGCOD.config.partner_id}/)
-        params["requestId"].sub!(/^#{AGCOD.config.partner_id}/, "")
+      if params['requestId'] && !!(params['requestId'] =~ /^#{AGCOD.config.partner_id}/)
+        params['requestId'].sub!(/^#{AGCOD.config.partner_id}/, '')
       end
 
       params

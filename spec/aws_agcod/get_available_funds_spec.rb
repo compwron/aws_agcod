@@ -17,20 +17,20 @@ describe AGCOD::GetAvailableFunds do
       }),
     }),
   )
-  let(:payload) { { "availableFunds" => { "amount" => amount, "currencyCode" => currency_code }, "status" => status, "timestamp" => timestamp } }
+  let(:payload) { { 'availableFunds' => { 'amount' => amount, 'currencyCode' => currency_code }, 'status' => status, 'timestamp' => timestamp } }
 
   let(:request_response) {
     OpenStruct.new(response:
       OpenStruct.new(payload:
         {
-          "availableFunds" => [
+          'availableFunds' => [
             {
-              "amount" => amount,
-              "currencyCode" => currency_code
+              'amount' => amount,
+              'currencyCode' => currency_code
             }
           ],
-          "status" => status,
-          "timestamp" => timestamp
+          'status' => status,
+          'timestamp' => timestamp
         }
       )
     )

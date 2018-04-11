@@ -11,21 +11,21 @@ module AGCOD
       # SUCCESS -- Operation succeeded
       # FAILURE -- Operation failed
       # RESEND -- A temporary/recoverable system failure that can be resolved by the partner retrying the request
-      @status = if payload["status"]
-        payload["status"]
-      elsif payload["agcodResponse"]
-        payload["agcodResponse"]["status"]
+      @status = if payload['status']
+        payload['status']
+      elsif payload['agcodResponse']
+        payload['agcodResponse']['status']
       else
-        "FAILURE"
+        'FAILURE'
       end
     end
 
     def success?
-      status == "SUCCESS"
+      status == 'SUCCESS'
     end
 
     def error_message
-      "#{payload["errorCode"]} #{payload["errorType"]} - #{payload["message"]}"
+      "#{payload['errorCode']} #{payload['errorType']} - #{payload['message']}"
     end
   end
 end

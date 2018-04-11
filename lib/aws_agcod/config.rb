@@ -8,14 +8,14 @@ module AGCOD
                   :production
 
     URI = {
-      sandbox: "https://agcod-v2-gamma.amazon.com",
-      production: "https://agcod-v2.amazon.com"
+      sandbox: 'https://agcod-v2-gamma.amazon.com',
+      production: 'https://agcod-v2.amazon.com'
     }
 
     def initialize
       # API defaults
       @production = false
-      @region = "us-east-1"
+      @region = 'us-east-1'
     end
 
     def uri
